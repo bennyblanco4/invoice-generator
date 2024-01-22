@@ -53,36 +53,38 @@ def add_text_to_pdf(input_pdf, name, lastname, street, city, province, postal_co
         packet = io.BytesIO()
         c = canvas.Canvas(packet, pagesize=page.MediaBox[-2:])
         c.setFont("Helvetica", 15)
+
+        if i == 0:
         
-        c.drawString(65, 635, name)
-        c.drawString(210, 635, lastname)
-        c.drawString(480, 612, street)
-        c.drawString(350, 635, city)
-        c.drawString(515, 635, province)
-        c.drawString(360, 612, postal_code)
-        c.drawString(265, 160, str(interest) + "%")
-        c.drawString(130, 160, term)
-        c.drawString(265, 31, current_date)
-        c.setFont("Helvetica-Bold", 15)
-        c.drawRightString(550, 120, f"${float(agreement_value):,.2f}")
-        c.setFont("Helvetica", 15)
-        c.drawRightString(550, 180, f"${pretax_value:,.2f}")
-        c.drawRightString(550, 150, f"${tax_value:,.2f}")
-        c.drawString(445, 80, full_name)
-        c.setFont("Helvetica", 10)
-        c.drawString(240, 80, address)
-            
-        y = 485  
-        for index, option in enumerate(options):
+         c.drawString(65, 635, name)
+         c.drawString(210, 635, lastname)
+         c.drawString(480, 612, street)
+         c.drawString(350, 635, city)
+         c.drawString(515, 635, province)
+         c.drawString(360, 612, postal_code)
+         c.drawString(265, 160, str(interest) + "%")
+         c.drawString(130, 160, term)
+         c.drawString(265, 31, current_date)
+         c.setFont("Helvetica-Bold", 15)
+         c.drawRightString(550, 120, f"${float(agreement_value):,.2f}")
+         c.setFont("Helvetica", 15)
+         c.drawRightString(550, 180, f"${pretax_value:,.2f}")
+         c.drawRightString(550, 150, f"${tax_value:,.2f}")
+         c.drawString(445, 80, full_name)
+         c.setFont("Helvetica", 10)
+         c.drawString(240, 80, address)
+             
+         y = 485  
+         for index, option in enumerate(options):
                 c.setFont("Helvetica", 15)
                 option_price = base_option_price
                 c.drawString(100, y, option['value'])
                 y -= 21  
 
-        c.drawRightString(90, 160, f"${monthly_payment:,.2f}")
+         c.drawRightString(90, 160, f"${monthly_payment:,.2f}")
             # Add payment frequency on the PDF
-        c.setFont("Helvetica", 8)
-        c.drawString(43, 145, payment_frequency.capitalize())
+         c.setFont("Helvetica", 8)
+         c.drawString(43, 145, payment_frequency.capitalize())
 
         
         c.save()
